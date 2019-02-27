@@ -1,7 +1,7 @@
 #!/bin/bash
 
-ls $1 | while read fn; do 
-	cat $1/$fn | while read line; do 
+ls $1 | while read file; do 
+	cat $1/$file | while read line; do 
 		grep -E "<Author>";
-	done | wc -l
-done
+	done | echo "$file $(wc -l)"
+done | sort -n -r -k 2
