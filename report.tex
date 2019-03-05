@@ -1,5 +1,6 @@
 \documentclass{article}
 \usepackage[utf8]{inputenc}
+\usepackage{listings}
 
 \title{COMP1204 - Coursework 1: Unix}
 \author{Daniel Best (Student ID: 29777127)}
@@ -10,6 +11,37 @@
 	
 	\newpage
 	\section{Scripts}
+	
+	\subsection{Basic File Processing (countreviews.sh)}
+	The first task of this coursework was to perform some basic file processing on the TripAdvisor data. Specifically, this involved retrieving the number of reviews for each hotel file, and then outputting a sorted list of hotels, ordered by the most reviews to least. \newline
+	
+	\noindent
+	The script file designed for this task, \textbf{countreviews.sh}, can be seen below:
+	
+	\begin{lstlisting}
+	#!/bin/bash
+		
+	for file in $1/*; do	
+		echo "$(basename $file .dat) $(grep -E -c "<Author>" $file)"
+	done | sort -n -r -k 2
+	\end{lstlisting}
+	
+	\begin{verbatim}
+	   #!/bin/bash
+	
+	   for file in $1/*; do	
+	      echo "$(basename $file .dat) $(grep -E -c "<Author>" $file)"
+	   done | sort -n -r -k 2
+	\end{verbatim}
+
+	\noindent
+	This script loops through each \textbf{file} in given file path, which is represented as \textbf{\$1/*} in the code. For each file, the script outputs the \textbf{basename}, i.e. the name of the file without the file path or extension, and the number of \textbf{{\textless}Author\textgreater} tags in the file, which represents the amount of reviews. This second value is found by using the \textbf{grep} command, with the \textbf{-c} argument specifying that the number of instances of the search query found should be returned, as opposed to the usual output of the found instances themselves. \newline
+	
+	\noindent
+	Once the for loop has been completed, the output is piped into the \textbf{sort} command, which sorts the results in numerical order (\textbf{-n}), in reverse order (\textbf{-r}), and based on the second column (\textbf{-k 2}).
+	
+	\subsection{Data Analysis (averagereviews.sh)}
+	
 	\section{Discussion}
 	
 \end{document}
