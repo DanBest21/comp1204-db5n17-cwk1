@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Debian) (preloaded format=pdflatex 2019.1.22)  5 MAR 2019 16:35
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Debian) (preloaded format=pdflatex 2019.1.22)  7 MAR 2019 02:26
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -414,26 +414,52 @@ Underfull \hbox (badness 10000) in paragraph at lines 44--45
 
  []
 
-[3] (./report.aux) ) 
+
+Underfull \hbox (badness 10000) in paragraph at lines 64--66
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 67--69
+
+ []
+
+[3]
+Underfull \hbox (badness 10000) in paragraph at lines 75--76
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 77--79
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 80--82
+
+ []
+
+[4] (./report.aux) ) 
 Here is how much of TeX's memory you used:
- 2185 strings out of 494945
- 26609 string characters out of 6181032
- 108585 words of memory out of 5000000
- 5517 multiletter control sequences out of 15000+600000
- 8719 words of font info for 31 fonts, out of 8000000 for 9000
+ 2190 strings out of 494945
+ 26657 string characters out of 6181032
+ 110585 words of memory out of 5000000
+ 5520 multiletter control sequences out of 15000+600000
+ 9233 words of font info for 33 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 26i,6n,32p,691b,1029s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 26i,6n,32p,756b,1049s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
 cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmb
 x12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.p
 fb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share
 /texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texliv
-e/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb>
-Output written on report.pdf (3 pages, 91392 bytes).
+e/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb>
+Output written on report.pdf (4 pages, 107732 bytes).
 PDF statistics:
- 42 PDF objects out of 1000 (max. 8388607)
- 29 compressed objects within 1 object stream
+ 49 PDF objects out of 1000 (max. 8388607)
+ 34 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

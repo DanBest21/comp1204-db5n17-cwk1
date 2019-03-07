@@ -25,7 +25,7 @@
 	\noindent
 	The script file designed for this task, \textbf{countreviews.sh}, can be seen below:
 	
-	\begin{lstlisting}
+	\begin{lstlisting}[caption={countreviews.sh}, captionpos=b]
 	#!/bin/bash
 	
 	for file in $1/*; do	
@@ -34,7 +34,7 @@
 	\end{lstlisting}
 
 	\noindent
-	This script loops through each \textbf{file} in given file path, which is represented as \textbf{\$1/*} in the code. For each file, the script outputs the \textbf{basename}, i.e. the name of the file without the file path or extension, and the number of \textbf{{\textless}Author\textgreater} tags in the file, which represents the amount of reviews. This second value is found by using the \textbf{grep} command, with the \textbf{-c} argument specifying that the number of instances of the search query found should be returned, as opposed to the usual output of the found instances themselves. \newline
+	This script loops through each \textbf{file} in given file path, which is represented as \textbf{\$1/*} (all files found in the passed file path argument) in the code. For each file, the script outputs the \textbf{basename}, i.e. the name of the file without the file path or extension, and the number of \textbf{{\textless}Author\textgreater} tags in the file, which represents the amount of reviews. This second value is found by using the \textbf{grep} command, with the \textbf{-c} argument specifying that the number of instances of the search query found should be returned, as opposed to the usual output of the found instances themselves. \newline
 	
 	\noindent
 	Once the for loop has been completed, the output is piped into the \textbf{sort} command, which sorts the results in numerical order (\textbf{-n}), in reverse order (\textbf{-r}), and based on the second column (\textbf{-k 2}).
@@ -46,7 +46,7 @@
 	\noindent
 	The \textbf{averagereviews.sh} script file was created to perform this task, and can be seen below:
 	
-	\begin{lstlisting}
+	\begin{lstlisting}[caption={averagereviews.sh}, captionpos=b]
 	#!/bin/bash
 
 	for file in $1/*; do
@@ -61,6 +61,30 @@
 	done | sort -n -r -k 2
 	\end{lstlisting}
 	
+	\noindent
+	This script also loops through each \textbf{file} in the passed file path argument, as represented by \textbf{\$1/*}. However, the script then enters another for loop which finds each \textbf{{\textless}Overall\textgreater} value in the file and adds this to the \textbf{total} value, whilst also incrementing the \textbf{i} value by one when one such value is found. This is achieved by means of a \textbf{grep} command that finds all such tags in the file, with this result being piped into a \textbf{sed} command which strips away the \textbf{{\textless}Overall\textgreater} tag and the carriage return character at the end of the line, which would otherwise cause issues for the arithmetic operation that follows. \newline
+	
+	\noindent
+	Once this information is collected, the \textbf{basename} value is of the file is found and these three variables are given as arguments to an \textbf{awk} command; this command simply outputs the hotel name followed by the calculated mean rating value (\textit{2dp}), which is calculated by dividing the \textbf{total} value by the \textbf{i} (number of iterations) value. It is worth noting that an \textbf{echo} command is needed before the \textbf{awk} command to generate an output on the console. It is also worth noting that the \textbf{awk} command was also only used as the \textbf{bc} command, which is designed for floating point arithmetic, was not installed on the COMP1204 Debian VM. \newline
+	
+	\noindent
+	As with the previous script, this output is then piped into a sort command that sorts the results in numerical order (\textbf{-n}), in reverse order (\textbf{-r}), and based on the second column (\textbf{-k 2}).
+	
+	\newpage
 	\section{Discussion}
+	This final section will analyse the problems that TripAdvisor may face by collecting reviews in this manner. \newline
+	
+	\noindent
+	Currently, this information is stored in an unstructured markup file that makes performing detailed analysis much more difficult than it needs to be. The tags in the current file do act as meta-data to an extent, but the files as they are right now are more like glorified \textbf{.txt} files as opposed to a structured markup file like \textbf{XML}. This kind of storage type is sufficient for small amounts of data, but less suited for the large amount of data that TripAdvisor has for its reviews. \newline
+	
+	\noindent
+	At the very least, this data should be stored in \textbf{XML} files that would allow for the use of tools like \textbf{XPath} to make performing analysis easier. Ideally however, this data would instead be moved into a structured database, where \textbf{SQL} or another querying language could be used to effortlessly perform the exact same analysis. \newline
+	
+	\noindent
+	The way that the reviews are collected and ranked can also be improved. To this end, the following are ideas as to how TripAdvisor could go about doing this:
+	
+	\begin{enumerate}
+		\item Temp
+	\end{enumerate}
 	
 \end{document}
