@@ -13,6 +13,6 @@ for file in $1/*; do
 	# Get the name of the file without the extension and file path.
 	name=$(basename $file .dat)
 	# Calculate the overall rating and round it to two decimal places using awk, and then output this.
-	echo | awk -v name="$name" -v total="$total" -v i="$i" '{printf "%s %.2f\n", name, total/i}';
+	awk -v name="$name" -v total="$total" -v i="$i" 'BEGIN{printf "%s %.2f\n", name, total/i}';
 # Feed the output of the loop into a sort command.
 done | sort -n -r -k 2
