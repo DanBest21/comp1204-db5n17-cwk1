@@ -1,6 +1,7 @@
 \documentclass{article}
 \usepackage[utf8]{inputenc}
 \usepackage{listings}
+\usepackage{fancyhdr}
 
 \lstset
 {
@@ -11,6 +12,14 @@
 
 \title{COMP1204 - Coursework 1: Unix}
 \author{Daniel Best (Student ID: 29777127)}
+
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0.5pt}
+\lfoot{Daniel Best}
+\cfoot{\thepage}
+\rfoot{ID: 29777127}
 
 \begin{document}
 	
@@ -34,7 +43,7 @@
 	\end{lstlisting}
 
 	\noindent
-	This script loops through each \textbf{file} in given file path, which is represented as \textbf{\$1/*} (all files found in the passed file path argument) in the code. For each file, the script outputs the \textbf{basename}, i.e. the name of the file without the file path or extension, and the number of \textbf{{\textless}Author\textgreater} tags in the file, which represents the amount of reviews. This second value is found by using the \textbf{grep} command, with the \textbf{-c} argument specifying that the number of instances of the search query found should be returned, as opposed to the usual output of the found instances themselves. \newline
+	This script loops through each \textbf{file} in g10 iven file path, which is represented as \textbf{\$1/*} (all files found in the passed file path argument) in the code. For each file, the script outputs the \textbf{basename}, i.e. the name of the file without the file path or extension, and the number of \textbf{{\textless}Author\textgreater} tags in the file, which represents the amount of reviews. This second value is found by using the \textbf{grep} command, with the \textbf{-c} argument specifying that the number of instances of the search query found should be returned, as opposed to the usual output of the found instances themselves. \newline
 	
 	\noindent
 	Once the for loop has been completed, the output is piped into the \textbf{sort} command, which sorts the results in numerical order (\textbf{-n}), in reverse order (\textbf{-r}), and based on the second column (\textbf{-k 2}).
@@ -57,7 +66,7 @@
 			i=$((i + 1));
 		done
 		name=$(basename $file .dat)
-		echo | awk -v name="$name" -v total="$total" -v i="$i" '{printf "%s %.2f\n", name, total/i}';
+		awk -v name="$name" -v total="$total" -v i="$i" 'BEGIN{printf "%s %.2f\n", name, total/i}';
 	done | sort -n -r -k 2
 	\end{lstlisting}
 	
@@ -65,7 +74,7 @@
 	This script also loops through each \textbf{file} in the passed file path argument, as represented by \textbf{\$1/*}. However, the script then enters another for loop which finds each \textbf{{\textless}Overall\textgreater} value in the file and adds this to the \textbf{total} value, whilst also incrementing the \textbf{i} value by one when one such value is found. This is achieved by means of a \textbf{grep} command that finds all such tags in the file, with this result being piped into a \textbf{sed} command which strips away the \textbf{{\textless}Overall\textgreater} tag and the carriage return character at the end of the line, which would otherwise cause issues for the arithmetic operation that follows. \newline
 	
 	\noindent
-	Once this information is collected, the \textbf{basename} value is of the file is found and these three variables are given as arguments to an \textbf{awk} command; this command simply outputs the hotel name followed by the calculated mean rating value (\textit{2dp}), which is calculated by dividing the \textbf{total} value by the \textbf{i} (number of iterations) value. It is worth noting that an \textbf{echo} command is needed before the \textbf{awk} command to generate an output on the console. It is also worth noting that the \textbf{awk} command was also only used as the \textbf{bc} command, which is designed for floating point arithmetic, was not installed on the COMP1204 Debian VM. \newline
+	Once this information is collected, the \textbf{basename} value is of the file is found and these three variables are given as arguments to an \textbf{awk} command; this command simply outputs the hotel name followed by the calculated mean rating value (\textit{2dp}), which is calculated by dividing the \textbf{total} value by the \textbf{i} (number of iterations) value. It is worth noting that the \textbf{awk} command was also only used as the \textbf{bc} command, which is designed for floating point arithmetic, was not installed on the COMP1204 Debian VM. \newline
 	
 	\noindent
 	As with the previous script, this output is then piped into a sort command that sorts the results in numerical order (\textbf{-n}), in reverse order (\textbf{-r}), and based on the second column (\textbf{-k 2}).
@@ -81,10 +90,22 @@
 	At the very least, this data should be stored in \textbf{XML} files that would allow for the use of tools like \textbf{XPath} to make performing analysis easier. Ideally however, this data would instead be moved into a structured database, where \textbf{SQL} or another querying language could be used to effortlessly perform the exact same analysis. \newline
 	
 	\noindent
-	The way that the reviews are collected and ranked can also be improved. To this end, the following are ideas as to how TripAdvisor could go about doing this:
+	Apart from the way in which the data is stored, the manner in which the reviews are collected and ranked can also be improved. To this end, TripAdvisor could make use of the following ideas:
 	
 	\begin{enumerate}
-		\item Temp
+		\item After having analysed some of the data, it seems that \textbf{Overall} is user-defined as opposed to being calculated by some kind of mathematical average by the system. It would make more sense to allow the user to select the score for other fields, and then calculate the \textbf{Overall} value based on those values.
+		\item Currently the user is able to leave some of the rating fields blank, with the exception of the \textbf{Overall} field. By forcing the user to populate each of these fields, the quality of each review should significantly improve.
+		\item Reviews could be made obsolete after a particular duration as passed, as a review that was helpful a significant amount of years ago may be obsolete, and will certainly be less relevant than a review made at a more recent time.
+	\end{enumerate}
+
+	\newpage
+	\noindent
+	As well as the way in which they collect reviews, TripAdvisor should also consider making changes to the current system in order to increase the validity of the reviews. Here are some proposals as to how they could go about achieving this:
+	
+	\begin{enumerate}
+		\item An additional check could be added to verify that the \textbf{IP Address} of a new reviewer differs from previous reviewers in order to stop one individual from posting lots of fraudulent reviews about a particular hotel.
+		\item Some reviews contain little to no comments, and therefore it is difficult to tell how a user justifies each score given in a review. TripAdvisor could consider a specific comments field for each individual rating to help justify each score the reviewer gives.
+		\item In order to ensure that less fraudulent reviews are committed, a reviewer could first be made to connect their TripAdvisor account with some form of \textbf{social media} account such as Facebook, Snapchat or Whatsapp. This should make it more difficult to set up a fake account to create a bias review from.
 	\end{enumerate}
 	
 \end{document}
