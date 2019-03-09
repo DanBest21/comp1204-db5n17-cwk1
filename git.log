@@ -1,0 +1,113 @@
+commit 0babf74e0a21ef90a9b97cf9a921b3cc0dabc508
+Author: db5n17 <db5n17@soton.ac.uk>
+Date:   Sat Mar 9 04:15:51 2019 +0000
+
+    Added submission zip file.
+
+commit 025beae0ce852c0aa1b072609ff37ec60273441d
+Author: db5n17 <db5n17@soton.ac.uk>
+Date:   Sat Mar 9 03:50:23 2019 +0000
+
+    Completed initial draft of the report.
+
+commit 150239f59d36e4c8af1e3ac85a509dec3452df2d
+Author: db5n17 <db5n17@soton.ac.uk>
+Date:   Thu Mar 7 18:31:30 2019 +0000
+
+    Changed awk command to run without the need of a preceding echo command.
+
+commit 268cb76f35fac79593b349d2cb6ebe7a0b7d7451
+Author: db5n17 <db5n17@soton.ac.uk>
+Date:   Thu Mar 7 02:27:05 2019 +0000
+
+    Completed Data Analysis section and started Discussion section.
+
+commit c51359fbff7bb09d6a53ade0b43ca08c771c5857
+Author: COMP1204 Student <student@comp1204-vm>
+Date:   Tue Mar 5 16:56:14 2019 +0000
+
+    Started work on the Data Analysis section.
+
+commit fcddb6601932176cc5d9c63d600fa9f4de9a26c8
+Author: COMP1204 Student <student@comp1204-vm>
+Date:   Tue Mar 5 15:35:56 2019 +0000
+
+    Removed uneccessary "-E" argument in the grep command.
+
+commit f9ee0aefe6482c7ba73f26289a42efecf2eaffb1
+Author: db5n17 <db5n17@soton.ac.uk>
+Date:   Tue Mar 5 13:43:38 2019 +0000
+
+    Updated the report file, completing the Basic File Processing section.
+
+commit 7488b3846d82e15e0912c758313447aa695c6f05
+Author: db5n17 <db5n17@soton.ac.uk>
+Date:   Tue Mar 5 01:32:53 2019 +0000
+
+    Added a preliminary version of the LaTeX report file: report.tex.
+
+commit a9fdbffc36663a374ce9efea7d8c5d98968ccfd7
+Author: db5n17 <db5n17@soton.ac.uk>
+Date:   Tue Mar 5 00:33:38 2019 +0000
+
+    Consolidated the comments in both script files.
+
+commit 431e65f0a2776556baa23d370b25ecaf1408ac95
+Author: db5n17 <db5n17@soton.ac.uk>
+Date:   Tue Mar 5 00:27:52 2019 +0000
+
+    Made the averagereviews.sh script more efficient.
+
+commit d938c7712a8e311c4849db9694fd418ed9675850
+Author: db5n17 <db5n17@soton.ac.uk>
+Date:   Mon Mar 4 03:23:49 2019 +0000
+
+    Added more comments to detail how each script works.
+
+commit 26a9dab06270a99ea8b59d484ba6991af4a6f165
+Author: db5n17 <db5n17@soton.ac.uk>
+Date:   Sun Mar 3 04:47:59 2019 +0000
+
+    Implemented the intended functionality for the averagereviews.sh script.
+
+commit 7d66131d23cfad0e2184d9cbc9945beaa5c5c76e
+Author: db5n17 <db5n17@soton.ac.uk>
+Date:   Thu Feb 28 05:26:07 2019 +0000
+
+    Added unfinished averagereviews.sh script file.
+
+commit 7063a0e33eddf85eeb6e74b7c10b1ba022cd91ab
+Author: db5n17 <db5n17@soton.ac.uk>
+Date:   Thu Feb 28 03:43:04 2019 +0000
+
+    Fixed the countreviews.sh file to work with absolute file paths.
+
+commit a6832b178fa57d98cce69ada3f6025bddafc377b
+Author: db5n17 <db5n17@soton.ac.uk>
+Date:   Thu Feb 28 03:29:28 2019 +0000
+
+    Modified the countreviews.sh file to be more efficient.
+
+commit b34bdde433066a88b093e28aab727b2e1c91a264
+Author: db5n17 <db5n17@soton.ac.uk>
+Date:   Wed Feb 27 03:49:53 2019 +0000
+
+    Removed the .dat extension from the filename output.
+
+commit 924876bdc5e0d439091e77872df9f6102acc1921
+Author: db5n17 <db5n17@soton.ac.uk>
+Date:   Wed Feb 27 03:36:43 2019 +0000
+
+    Updated countreviews.sh to display the filename and to sort the results.
+
+commit b564d6563905c4eb4c2cb15031f5116fc8ca4e65
+Author: db5n17 <db5n17@soton.ac.uk>
+Date:   Wed Feb 27 03:22:08 2019 +0000
+
+    Updated countreviews.sh to search directories.
+
+commit 00684317a9d07878051cfb0050a7333fb47f3a3e
+Author: db5n17 <db5n17@soton.ac.uk>
+Date:   Wed Feb 27 02:31:29 2019 +0000
+
+    Added script which counts the number of reviews (countreview.sh).

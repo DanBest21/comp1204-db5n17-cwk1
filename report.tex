@@ -43,14 +43,14 @@
 	\end{lstlisting}
 
 	\noindent
-	This script loops through each \textbf{file} in g10 iven file path, which is represented as \textbf{\$1/*} (all files found in the passed file path argument) in the code. For each file, the script outputs the \textbf{basename}, i.e. the name of the file without the file path or extension, and the number of \textbf{{\textless}Author\textgreater} tags in the file, which represents the amount of reviews. This second value is found by using the \textbf{grep} command, with the \textbf{-c} argument specifying that the number of instances of the search query found should be returned, as opposed to the usual output of the found instances themselves. \newline
+	This script loops through each \textbf{file} in the given file path, which is represented as \textbf{\$1/*} (all files found in the passed file path argument). For each file, the script outputs the \textbf{basename}, i.e. the name of the file without the file path or extension, as well as the number of \textbf{{\textless}Author\textgreater} tags in the file, which represents the amount of reviews. This second value is found by using the \textbf{grep} command, with the \textbf{-c} argument specifying that the number of instances of the search query found should be the returned value, as opposed to the usual output of the found instances themselves. \newline
 	
 	\noindent
 	Once the for loop has been completed, the output is piped into the \textbf{sort} command, which sorts the results in numerical order (\textbf{-n}), in reverse order (\textbf{-r}), and based on the second column (\textbf{-k 2}).
 	
 	\newpage
 	\subsection{Data Analysis (averagereviews.sh)}
-	The other scripting task for this coursework was to perform data analysis on the same TripAdvisor dataset. In particular, the task was to get the average overall rating for each hotel by calculating the mean of all the \textbf{{\textless}Overall\textgreater} values found in the file. \newline
+	The other scripting task for this coursework was to perform data analysis on the TripAdvisor dataset. In particular, the task was to get the average overall rating for each hotel by calculating the mean of all the \textbf{{\textless}Overall\textgreater} values found in the file. \newline
 	
 	\noindent
 	The \textbf{averagereviews.sh} script file was created to perform this task, and can be seen below:
@@ -71,10 +71,10 @@
 	\end{lstlisting}
 	
 	\noindent
-	This script also loops through each \textbf{file} in the passed file path argument, as represented by \textbf{\$1/*}. However, the script then enters another for loop which finds each \textbf{{\textless}Overall\textgreater} value in the file and adds this to the \textbf{total} value, whilst also incrementing the \textbf{i} value by one when one such value is found. This is achieved by means of a \textbf{grep} command that finds all such tags in the file, with this result being piped into a \textbf{sed} command which strips away the \textbf{{\textless}Overall\textgreater} tag and the carriage return character at the end of the line, which would otherwise cause issues for the arithmetic operation that follows. \newline
+	This script also loops through each \textbf{file} in the passed file path argument, as represented by \textbf{\$1/*}. However, the script then enters another for loop which finds each \textbf{{\textless}Overall\textgreater} value in the file and sums these in the \textbf{total} value, whilst also incrementing the \textbf{i} value by one at each iteration. This is achieved by means of a \textbf{grep} command that finds all such tags in the file, with this result being piped into a \textbf{sed} command which strips away the \textbf{{\textless}Overall\textgreater} tag and the carriage return character at the end of the line, which would otherwise cause issues for the arithmetic operation that follows. \newline
 	
 	\noindent
-	Once this information is collected, the \textbf{basename} value is of the file is found and these three variables are given as arguments to an \textbf{awk} command; this command simply outputs the hotel name followed by the calculated mean rating value (\textit{2dp}), which is calculated by dividing the \textbf{total} value by the \textbf{i} (number of iterations) value. It is worth noting that the \textbf{awk} command was also only used as the \textbf{bc} command, which is designed for floating point arithmetic, was not installed on the COMP1204 Debian VM. \newline
+	Once this information is collected, the \textbf{basename} value of the file is found and these three variables are given as arguments to an \textbf{awk} command; this command simply outputs the hotel name followed by the calculated mean rating value (\textit{2dp}), which is calculated by dividing the \textbf{total} value by the \textbf{i} (number of iterations) value. It is worth noting that the \textbf{awk} command was only used as the \textbf{bc} command, which is designed for floating point arithmetic, was not installed on the COMP1204 Debian VM. \newline
 	
 	\noindent
 	As with the previous script, this output is then piped into a sort command that sorts the results in numerical order (\textbf{-n}), in reverse order (\textbf{-r}), and based on the second column (\textbf{-k 2}).
@@ -84,7 +84,7 @@
 	This final section will analyse the problems that TripAdvisor may face by collecting reviews in this manner. \newline
 	
 	\noindent
-	Currently, this information is stored in an unstructured markup file that makes performing detailed analysis much more difficult than it needs to be. The tags in the current file do act as meta-data to an extent, but the files as they are right now are more like glorified \textbf{.txt} files as opposed to a structured markup file like \textbf{XML}. This kind of storage type is sufficient for small amounts of data, but less suited for the large amount of data that TripAdvisor has for its reviews. \newline
+	Currently, this information is stored in an unstructured markup file that makes performing detailed analysis much more difficult than it needs to be. The tags in the current file do act as metadata to an extent, but the files as they are right now are more like glorified \textbf{.txt} files as opposed to a structured markup file like \textbf{XML}. This kind of storage type is sufficient for small amounts of data, but less suited for the large amount of data that TripAdvisor has for its reviews. \newline
 	
 	\noindent
 	At the very least, this data should be stored in \textbf{XML} files that would allow for the use of tools like \textbf{XPath} to make performing analysis easier. Ideally however, this data would instead be moved into a structured database, where \textbf{SQL} or another querying language could be used to effortlessly perform the exact same analysis. \newline
@@ -93,19 +93,19 @@
 	Apart from the way in which the data is stored, the manner in which the reviews are collected and ranked can also be improved. To this end, TripAdvisor could make use of the following ideas:
 	
 	\begin{enumerate}
-		\item After having analysed some of the data, it seems that \textbf{Overall} is user-defined as opposed to being calculated by some kind of mathematical average by the system. It would make more sense to allow the user to select the score for other fields, and then calculate the \textbf{Overall} value based on those values.
+		\item After having analysed some of the data, it seems that the \textbf{Overall} rating is user-defined as opposed to being calculated by some kind of mathematical average by the system. It would make more sense to allow the user to select the score for other rating fields, and then calculate an \textbf{Overall} value based on those values.
 		\item Currently the user is able to leave some of the rating fields blank, with the exception of the \textbf{Overall} field. By forcing the user to populate each of these fields, the quality of each review should significantly improve.
-		\item Reviews could be made obsolete after a particular duration as passed, as a review that was helpful a significant amount of years ago may be obsolete, and will certainly be less relevant than a review made at a more recent time.
+		\item Reviews could be made obsolete after a particular duration has passed, as a review that was helpful a significant amount of years ago may now be obsolete, and will certainly be less relevant than a review made more recently.
 	\end{enumerate}
 
 	\newpage
 	\noindent
-	As well as the way in which they collect reviews, TripAdvisor should also consider making changes to the current system in order to increase the validity of the reviews. Here are some proposals as to how they could go about achieving this:
+	As well as the way in which they collect reviews, TripAdvisor should also consider making changes to the current system in order to increase the validity of these said reviews. Here are some proposals as to how they could go about achieving this:
 	
 	\begin{enumerate}
 		\item An additional check could be added to verify that the \textbf{IP Address} of a new reviewer differs from previous reviewers in order to stop one individual from posting lots of fraudulent reviews about a particular hotel.
-		\item Some reviews contain little to no comments, and therefore it is difficult to tell how a user justifies each score given in a review. TripAdvisor could consider a specific comments field for each individual rating to help justify each score the reviewer gives.
-		\item In order to ensure that less fraudulent reviews are committed, a reviewer could first be made to connect their TripAdvisor account with some form of \textbf{social media} account such as Facebook, Snapchat or Whatsapp. This should make it more difficult to set up a fake account to create a bias review from.
+		\item Some reviews contain little to no comments, and therefore it is difficult to tell how a user justifies each score given in a review. TripAdvisor could consider a specific comments field for each individual rating to help justify each score the reviewer gives, which should allow them to determine untrustworthy reviews more easily.
+		\item In order to ensure that less fraudulent reviews are committed, a reviewer could first be made to connect their TripAdvisor account with some form of \textbf{social media} account such as Facebook, Snapchat or Whatsapp. This should make it more difficult to set up a fake account just to create a bias review.
 	\end{enumerate}
 	
 \end{document}
