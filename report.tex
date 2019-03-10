@@ -2,16 +2,20 @@
 \usepackage[utf8]{inputenc}
 \usepackage{listings}
 \usepackage{fancyhdr}
+\usepackage{parskip}
 
 \lstset
 {
 	basicstyle=\small\ttfamily,
-	columns=flexible,
+	columns=flexible,+-
 	breaklines=true
 }
 
 \title{COMP1204 - Coursework 1: Unix}
 \author{Daniel Best (Student ID: 29777127)}
+
+\parskip=12pt
+\setlength\parindent{0pt}
 
 \pagestyle{fancy}
 \fancyhf{}
@@ -29,9 +33,9 @@
 	\section{Scripts}
 	
 	\subsection{Basic File Processing (countreviews.sh)}
-	The first task of this coursework was to perform some basic file processing on the TripAdvisor data. Specifically, this involved retrieving the number of reviews for each hotel file, and then outputting a sorted list of hotels, ordered by the most reviews to least. \newline
+	The first task of this coursework was to perform some basic file processing on the TripAdvisor data. Specifically, this involved retrieving the number of reviews for each hotel file, and then outputting a sorted list of hotels, ordered by the most reviews to least.
 	
-	\noindent
+	
 	The script file designed for this task, \textbf{countreviews.sh}, can be seen below:
 	
 	\begin{lstlisting}[caption={countreviews.sh}, captionpos=b]
@@ -42,17 +46,17 @@
 	done | sort -n -r -k 2
 	\end{lstlisting}
 
-	\noindent
-	This script loops through each \textbf{file} in the given file path, which is represented as \textbf{\$1/*} (all files found in the passed file path argument). For each file, the script outputs the \textbf{basename}, i.e. the name of the file without the file path or extension, as well as the number of \textbf{{\textless}Author\textgreater} tags in the file, which represents the amount of reviews. This second value is found by using the \textbf{grep} command, with the \textbf{-c} argument specifying that the number of instances of the search query found should be the returned value, as opposed to the usual output of the found instances themselves. \newline
 	
-	\noindent
+	This script loops through each \textbf{file} in the given file path, which is represented as \textbf{\$1/*} (all files found in the passed file path argument). For each file, the script outputs the \textbf{basename}, i.e. the name of the file without the file path or extension, as well as the number of \textbf{{\textless}Author\textgreater} tags in the file, which represents the amount of reviews. This second value is found by using the \textbf{grep} command, with the \textbf{-c} argument specifying that the number of instances of the search query found should be the returned value, as opposed to the usual output of the found instances themselves.
+	
+	
 	Once the for loop has been completed, the output is piped into the \textbf{sort} command, which sorts the results in numerical order (\textbf{-n}), in reverse order (\textbf{-r}), and based on the second column (\textbf{-k 2}).
 	
 	\newpage
 	\subsection{Data Analysis (averagereviews.sh)}
-	The other scripting task for this coursework was to perform data analysis on the TripAdvisor dataset. In particular, the task was to get the average overall rating for each hotel by calculating the mean of all the \textbf{{\textless}Overall\textgreater} values found in the file. \newline
+	The other scripting task for this coursework was to perform data analysis on the TripAdvisor dataset. In particular, the task was to get the average overall rating for each hotel by calculating the mean of all the \textbf{{\textless}Overall\textgreater} values found in the file. 
 	
-	\noindent
+	
 	The \textbf{averagereviews.sh} script file was created to perform this task, and can be seen below:
 	
 	\begin{lstlisting}[caption={averagereviews.sh}, captionpos=b]
@@ -70,26 +74,25 @@
 	done | sort -n -r -k 2
 	\end{lstlisting}
 	
-	\noindent
-	This script also loops through each \textbf{file} in the passed file path argument, as represented by \textbf{\$1/*}. However, the script then enters another for loop which finds each \textbf{{\textless}Overall\textgreater} value in the file and sums these in the \textbf{total} value, whilst also incrementing the \textbf{i} value by one at each iteration. This is achieved by means of a \textbf{grep} command that finds all such tags in the file, with this result being piped into a \textbf{sed} command which strips away the \textbf{{\textless}Overall\textgreater} tag and the carriage return character at the end of the line, which would otherwise cause issues for the arithmetic operation that follows. \newline
 	
-	\noindent
-	Once this information is collected, the \textbf{basename} value of the file is found and these three variables are given as arguments to an \textbf{awk} command; this command simply outputs the hotel name followed by the calculated mean rating value (\textit{2dp}), which is calculated by dividing the \textbf{total} value by the \textbf{i} (number of iterations) value. It is worth noting that the \textbf{awk} command was only used as the \textbf{bc} command, which is designed for floating point arithmetic, was not installed on the COMP1204 Debian VM. \newline
+	This script also loops through each \textbf{file} in the passed file path argument, as represented by \textbf{\$1/*}. However, the script then enters another for loop which finds each \textbf{{\textless}Overall\textgreater} value in the file and sums these in the \textbf{total} value, whilst also incrementing the \textbf{i} value by one at each iteration. This is achieved by means of a \textbf{grep} command that finds all such tags in the file, with this result being piped into a \textbf{sed} command which strips away the \textbf{{\textless}Overall\textgreater} tag and the carriage return character at the end of the line, which would otherwise cause issues for the arithmetic operation that follows. 
 	
-	\noindent
+	
+	Once this information is collected, the \textbf{basename} value of the file is found and these three variables are given as arguments to an \textbf{awk} command; this command simply outputs the hotel name followed by the calculated mean rating value (\textit{2dp}), which is calculated by dividing the \textbf{total} value by the \textbf{i} (number of iterations) value. It is worth noting that the \textbf{awk} command was only used as the \textbf{bc} command, which is designed for floating point arithmetic, was not installed on the COMP1204 Debian VM. 
+	
 	As with the previous script, this output is then piped into a sort command that sorts the results in numerical order (\textbf{-n}), in reverse order (\textbf{-r}), and based on the second column (\textbf{-k 2}).
 	
 	\newpage
 	\section{Discussion}
-	This final section will analyse the problems that TripAdvisor may face by collecting reviews in this manner. \newline
+	This final section will analyse the problems that TripAdvisor may face by collecting reviews in this manner. 
 	
-	\noindent
-	Currently, this information is stored in an unstructured markup file that makes performing detailed analysis much more difficult than it needs to be. The tags in the current file do act as metadata to an extent, but the files as they are right now are more like glorified \textbf{.txt} files as opposed to a structured markup file like \textbf{XML}. This kind of storage type is sufficient for small amounts of data, but less suited for the large amount of data that TripAdvisor has for its reviews. \newline
 	
-	\noindent
-	At the very least, this data should be stored in \textbf{XML} files that would allow for the use of tools like \textbf{XPath} to make performing analysis easier. Ideally however, this data would instead be moved into a structured database, where \textbf{SQL} or another querying language could be used to effortlessly perform the exact same analysis. \newline
+	Currently, this information is stored in an unstructured markup file that makes performing detailed analysis much more difficult than it needs to be. The tags in the current file do act as metadata to an extent, but the files as they are right now are more like glorified \textbf{.txt} files as opposed to a structured markup file like \textbf{XML}. This kind of storage type is sufficient for small amounts of data, but less suited for the large amount of data that TripAdvisor has for its reviews. 
 	
-	\noindent
+	
+	At the very least, this data should be stored in \textbf{XML} files that would allow for the use of tools like \textbf{XPath} to make performing analysis easier. Ideally however, this data would instead be moved into a structured database, where \textbf{SQL} or another querying language could be used to effortlessly perform the exact same analysis. 
+	
+	
 	Apart from the way in which the data is stored, the manner in which the reviews are collected and ranked can also be improved. To this end, TripAdvisor could make use of the following ideas:
 	
 	\begin{enumerate}
@@ -99,13 +102,14 @@
 	\end{enumerate}
 
 	\newpage
-	\noindent
+	
 	As well as the way in which they collect reviews, TripAdvisor should also consider making changes to the current system in order to increase the validity of these said reviews. Here are some proposals as to how they could go about achieving this:
 	
 	\begin{enumerate}
 		\item An additional check could be added to verify that the \textbf{IP Address} of a new reviewer differs from previous reviewers in order to stop one individual from posting lots of fraudulent reviews about a particular hotel.
 		\item Some reviews contain little to no comments, and therefore it is difficult to tell how a user justifies each score given in a review. TripAdvisor could consider a specific comments field for each individual rating to help justify each score the reviewer gives, which should allow them to determine untrustworthy reviews more easily.
 		\item In order to ensure that less fraudulent reviews are committed, a reviewer could first be made to connect their TripAdvisor account with some form of \textbf{social media} account such as Facebook, Snapchat or Whatsapp. This should make it more difficult to set up a fake account just to create a bias review.
+		\item TEST
 	\end{enumerate}
 	
 \end{document}
