@@ -1,3 +1,44 @@
+commit d8b725949bc395c3221e6833f4928618d232d99c
+Author: COMP1204 Student <student@comp1204-vm>
+Date:   Sun Mar 10 20:49:23 2019 +0000
+
+    Corrected some mistakes with the previous commit.
+
+commit 14f66c26e2ca9e39088e71ae161051b40bcc03f7
+Author: best d. (db5n17) <db5n17@soton.ac.uk>
+Date:   Sun Mar 10 20:36:47 2019 +0000
+
+    Updating LaTeX file to globally set paragraph line space and no indent.
+
+commit 515c91d2249ed3ea4ecf51d47e698f96a0620bdb
+Author: db5n17 <db5n17@soton.ac.uk>
+Date:   Sat Mar 9 19:14:04 2019 +0000
+
+    Updated comp1204.tar.gz based on other changes made
+
+commit d54a1426e0973aa837f6a556509ef6a834b0df09
+Author: db5n17 <db5n17@soton.ac.uk>
+Date:   Sat Mar 9 19:09:22 2019 +0000
+
+    Revert "for file in $1/*; do"
+    
+    This reverts commit 22856a554c27d61b4f656ba5d3e126b0cc185aca.
+
+commit 22856a554c27d61b4f656ba5d3e126b0cc185aca
+Author: db5n17 <db5n17@soton.ac.uk>
+Date:   Sat Mar 9 19:07:34 2019 +0000
+
+    for file in $1/*; do
+            # Output the basename of the file, and the number of reviews (number of <Author> tags).
+            echo "$(basename $file .dat) $(grep -E -c "<Author>" $file)"
+    done | sort -n -r -k 2
+
+commit 22f91283660431297a61548663cdc4ae6307666a
+Author: db5n17 <db5n17@soton.ac.uk>
+Date:   Sat Mar 9 18:56:01 2019 +0000
+
+    Corrected some mistakes in the port and added the git.log file.
+
 commit 0babf74e0a21ef90a9b97cf9a921b3cc0dabc508
 Author: db5n17 <db5n17@soton.ac.uk>
 Date:   Sat Mar 9 04:15:51 2019 +0000
