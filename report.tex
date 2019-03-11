@@ -76,8 +76,10 @@
 	
 	\newpage
 	\section{Discussion}
-	This final section will analyse the problems that TripAdvisor may face by collecting reviews in this manner. 
+	This final section will analyse the problems that TripAdvisor may face by collecting reviews in this manner.
 	
+	
+	\subsection{Data Structure Analysis}
 	Currently, this information is stored in an unstructured markup file that makes performing detailed analysis much more difficult than it needs to be. The tags in the current file do act as metadata to an extent, but the files as they are right now are more like glorified \textbf{.txt} files as opposed to a structured markup file like \textbf{XML}. This kind of storage type is sufficient for small amounts of data, but less suited for the large amount of data that TripAdvisor has for its reviews. 
 	
 	At the very least, this data should be stored in \textbf{XML} files that would allow for the use of tools like \textbf{XPath} to make performing analysis easier. Ideally however, this data would instead be moved into a structured \textbf{database}, where \textbf{SQL} or another querying language could be used to effortlessly perform the exact same analysis.
@@ -87,6 +89,7 @@
 	In general, the \textbf{flat-file} structure that TripAdvisor utilises may very well lead to \textbf{data duplication} - for instance: if a user has two reviews, then the data of their name must be duplicated for both records. In a \textbf{database}, the user data would exist in its own table, which is then simply referenced by another table that contains the actual review data. This would achieve \textbf{data redundancy} and likely result in the \textbf{database} requiring less storage space than the current \textbf{flat-file} data, despite the need for more initial storage for the database's \textbf{schema} information and the \textbf{DBMS}.
 	
 	\newpage
+	\subsection{Potential Improvements}
 	Apart from the way in which the data is stored, the manner in which the reviews are collected and ranked can also be improved. To this end, TripAdvisor could make use of the following ideas:
 	
 	\begin{enumerate}
