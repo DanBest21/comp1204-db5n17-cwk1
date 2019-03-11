@@ -80,22 +80,26 @@
 	
 	Currently, this information is stored in an unstructured markup file that makes performing detailed analysis much more difficult than it needs to be. The tags in the current file do act as metadata to an extent, but the files as they are right now are more like glorified \textbf{.txt} files as opposed to a structured markup file like \textbf{XML}. This kind of storage type is sufficient for small amounts of data, but less suited for the large amount of data that TripAdvisor has for its reviews. 
 	
-	At the very least, this data should be stored in \textbf{XML} files that would allow for the use of tools like \textbf{XPath} to make performing analysis easier. Ideally however, this data would instead be moved into a structured database, where \textbf{SQL} or another querying language could be used to effortlessly perform the exact same analysis. 
+	At the very least, this data should be stored in \textbf{XML} files that would allow for the use of tools like \textbf{XPath} to make performing analysis easier. Ideally however, this data would instead be moved into a structured \textbf{database}, where \textbf{SQL} or another querying language could be used to effortlessly perform the exact same analysis.
 	
+	A \textbf{database} will, however, bring the disadvantage of requiring slightly more storage than the current \textbf{flat-file} structure for its actual underlying structure, but it would also allow for more advanced manipulation of the data, such as creating \textbf{tables} and \textbf{views}. It will also have the ability to easily record any \textbf{transaction} that may occur between a particular user and the data. A \textbf{database} also has the advantage of being easily transferable due to the presence of a \textbf{Database Management System (DBMS)} that defines how the data is structured and how it can be interacted with.
+	
+	In general, the \textbf{flat-file} structure that TripAdvisor utilises may very well lead to \textbf{data duplication} - for instance: if a user has two reviews, then the data of their name must be duplicated for both records. In a \textbf{database}, the user data would exist in its own table, which is then simply referenced by another table that contains the actual review data. This would achieve \textbf{data redundancy} and likely result in the \textbf{database} requiring less storage space than the current \textbf{flat-file} data, despite the need for more initial storage for the database's \textbf{schema} information and the \textbf{DBMS}.
+	
+	\newpage
 	Apart from the way in which the data is stored, the manner in which the reviews are collected and ranked can also be improved. To this end, TripAdvisor could make use of the following ideas:
 	
 	\begin{enumerate}
 		\item After having analysed some of the data, it seems that the \textbf{Overall} rating is user-defined as opposed to being calculated by some kind of mathematical average by the system. It would make more sense to allow the user to select the score for other rating fields, and then calculate an \textbf{Overall} value based on those values.
 		\item Currently the user is able to leave some of the rating fields blank, with the exception of the \textbf{Overall} field. By forcing the user to populate each of these fields, the quality of each review should significantly improve.
-		\item Reviews could be made obsolete after a particular duration has passed, as a review that was helpful a significant amount of years ago may now be obsolete, and will certainly be less relevant than a review made more recently.
+		\item Reviews could be made obsolete after a particular duration has passed, as a review that was helpful a significant amount of years ago may now be irrelevant, and will almost certainly be less informative than a review made more recently.
 	\end{enumerate}
 
-	\newpage
 	As well as the way in which they collect reviews, TripAdvisor should also consider making changes to the current system in order to increase the validity of these said reviews. Here are some proposals as to how they could go about achieving this:
 	
 	\begin{enumerate}
 		\item An additional check could be added to verify that the \textbf{IP Address} of a new reviewer differs from previous reviewers in order to stop one individual from posting lots of fraudulent reviews about a particular hotel.
-		\item Some reviews contain little to no comments, and therefore it is difficult to tell how a user justifies each score given in a review. TripAdvisor could consider a specific comments field for each individual rating to help justify each score the reviewer gives, which should allow them to determine untrustworthy reviews more easily.
+		\item Some reviews contain little to no comments, and therefore it is difficult to tell how a user justifies each score given in a review. TripAdvisor could consider a specific comments field for each individual rating to help justify each score the reviewer gives, which should allow them to manually determine untrustworthy reviews more easily.
 		\item In order to ensure that less fraudulent reviews are committed, a reviewer could first be made to connect their TripAdvisor account with some form of \textbf{social media} account such as Facebook, Snapchat or Whatsapp. This should make it more difficult to set up a fake account just to create a bias review.
 	\end{enumerate}
 	
