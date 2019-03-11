@@ -1,3 +1,33 @@
+commit 0c7955b3c4648a27178d4394f0a14822a8b7b4a6
+Author: COMP1204 Student <student@comp1204-vm>
+Date:   Mon Mar 11 15:08:19 2019 +0000
+
+    Added subsections to the Discussion section.
+
+commit 77ca465991715feaeed09ff20b5a2db122a6d43b
+Author: db5n17 <db5n17@soton.ac.uk>
+Date:   Mon Mar 11 02:09:58 2019 +0000
+
+    Updated tar.gz archive.
+
+commit 3ff6b4fb0ab9b7dd0e203203d6d3e68df02081e0
+Author: db5n17 <db5n17@soton.ac.uk>
+Date:   Mon Mar 11 02:05:09 2019 +0000
+
+    Added more information regarding flat-file and database structures.
+
+commit dd4de874ac51e79e93b53027de3a30232ac7caf3
+Author: COMP1204 Student <student@comp1204-vm>
+Date:   Sun Mar 10 20:54:11 2019 +0000
+
+    Updated comp1204.tar.gz.
+
+commit 2f67c3692f6a1417a7d575e95768b1b8d940002b
+Author: COMP1204 Student <student@comp1204-vm>
+Date:   Sun Mar 10 20:50:45 2019 +0000
+
+    Updated git.log.
+
 commit d8b725949bc395c3221e6833f4928618d232d99c
 Author: COMP1204 Student <student@comp1204-vm>
 Date:   Sun Mar 10 20:49:23 2019 +0000
